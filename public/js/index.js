@@ -25,12 +25,12 @@ socket.on('newMessage', function (message) {
 socket.on('newLocationMessage', function (message) {
   var formattedTime = moment(message.createdAt).format('h:mm a');
   var template = jQuery('#location-message-template').html();
-  var htmlLoc = Mustache.render(template,{
-    text: message.text,
+  var html = Mustache.render(template,{
     from: message.from,
+    url: message.url,
     createdAt: formattedTime
   });
-  jQuery('#location-message-template').append(htmlLoc);
+  jQuery('#location-message-template').append(html);
 });
 
 jQuery('#message-form').on('submit', function (e) {
